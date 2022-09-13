@@ -28,11 +28,12 @@
 		<li><a class="active">Resume Generator</a></li>
 <li class="right"><a href="/logout">Logout</a></li>
 	</ul>
+	<div class="LR_body">
 	<div class="page_size2">
 		<div class="header_section">
 			<c:forEach items="${allheaderinfos}" var="headerinfo">
 				<div class="name">
-					<h1 class="he1">${headerinfo.firstname} ${headerinfo.middlename} ${headerinfo.lastname}</h1>
+					<h1 class="he1"><a href="/resume/${resume.id}/edit/1">${headerinfo.firstname} ${headerinfo.middlename} ${headerinfo.lastname}</a></h1>
 				</div>
 				<div class="contact_info">
 					<p class="word">${headerinfo.email}</p>
@@ -43,7 +44,7 @@
 		</div>
 		<div class="education_section">
 			<div class="title">
-				<h2 class="he2">Education</h2>
+				<h2 class="he2"><a href="/resume/${resume.id}/edit/2">Education</a></h2>
 				<hr>
 			</div>
 			<c:forEach items="${alleducations}" var="education">
@@ -61,18 +62,18 @@
 		</div>
 		<div class="skill_section">
 			<div class="title">
-				<h2 class="he2">Skills</h2>
+				<h2 class="he2"><a href="/resume/${resume.id}/edit/3">Skills</a></h2>
 			</div>
 			<hr>
 			<c:forEach items="${allskills}" var="skill">
 				<div class="sub">
-					<p class="word">${skill.skill}</p>
+					<p class="word">${skill.name}</p>
 				</div>
 			</c:forEach>
 		</div>
 		<div class="experiance_section">
 			<div class="title">
-				<h2 class="he2">Professional Experiance</h2>
+				<h2 class="he2"><a href="/resume/${resume.id}/edit/4">Professional Experience</a></h2>
 			</div>
 			<hr>
 			<c:forEach items="${allexperiances}" var="experiance">
@@ -93,7 +94,7 @@
 		</div>
 		<div class="project_section">
 			<div class="title">
-				<h2 class="he2">Projects</h2>
+				<h2 class="he2"><a href="/resume/${resume.id}/edit/5">Projects</a></h2>
 			</div>
 			<hr>
 			<c:forEach items="${allprojects}" var="project">
@@ -110,7 +111,7 @@
 		</div>
 		<div class="honor_section">
 			<div class="title">
-				<h2 class="he2">Activities & Honors</h2>
+				<h2 class="he2"><a href="/resume/${resume.id}/edit/6">Activities & Honors</a></h2>
 			</div>
 			<hr>
 			<c:forEach items="${allhonors}" var="honor">
@@ -120,5 +121,10 @@
 			</c:forEach>
 		</div>
 	</div>
+	<div>
+	<button>Save As</button>
+	</div>
+	</div>
+	
 </body>
 </html>

@@ -25,7 +25,7 @@
 	<ul class="topnav">
 		<li><a href="/">Home</a></li>
 		<li><a class="active">Resume Generator</a></li>
-		<li class="right"><a href="/logout">Logout</a></li>
+<li class="right"><a href="/logout">Logout</a></li>
 	</ul>
 	<div class="LR_body">
 		<h1>Resume Information Form</h1>
@@ -34,38 +34,41 @@
 		<div>
 			<div class="Form_setup">
 				<div class="SubForm_setup">
-					<div class="Subtitle_setup">
+					<div>
 						<h3>Education</h3>
-						<h3>2 of 6</h3>
 					</div>
 					<c:forEach items="${alleducations}" var="education">
-						<p>${education.name}${education.degreetype}${education.major}
-							${education.enrolledyear} ${education.graduationyear}</p>
-					</c:forEach>
-					<form:form action="/edu/new" method="post"
+					<form:form action="/resume/${resume.id}/update_education" method="post"
 						modelAttribute="education">
+						<input type="hidden" name="_method" value="put" />
+						<div>
+								<p />
+								<p />
+								<p>${education.name}</p>
+								<p />
+							</div>
 						<form:errors path="name" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="name">School Name:</form:label>
-							<form:input type="text" path="name" />
+							<form:input type="text" path="name" value="${education.name}" />
 						</div>
 						<form:errors path="city" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="city">School City:</form:label>
-							<form:input type="text" path="city" />
+							<form:input type="text" path="city" value="${education.city}"/>
 						</div>
 						<form:errors path="state" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="state">School State:</form:label>
-							<form:input type="text" path="state" />
+							<form:input type="text" path="state" value="${education.state}"/>
 						</div>
 						<div class="Form_position">
 							<form:label path="degreetype">Degree type:</form:label>
-							<form:input type="text" path="degreetype" />
+							<form:input type="text" path="degreetype" value="${education.degreetype}"/>
 						</div>
 						<div class="Form_position">
 							<form:label path="major">Major:</form:label>
-							<form:input type="text" path="major" />
+							<form:input type="text" path="major" value="${education.major}"/>
 						</div>
 						<form:errors path="enrolledyear" class="text-danger" />
 						<div class="Form_position">
@@ -73,13 +76,10 @@
 							<form:select type="text" path="enrolledyear">
 								<c:forEach items="${allyears}" var="year">
 									<c:choose>
-										<c:when test="${year == currentyear}">
-											<option value="${year}" selected>${year}</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${year}">${year}</option>
-										</c:otherwise>
-									</c:choose>
+								<c:when test="${year == education.enrolledyear}"><option
+										value="${year}" selected>${year}</option></c:when>
+										<c:otherwise><option value="${year}">${year}</option></c:otherwise>
+								</c:choose>
 								</c:forEach>
 							</form:select>
 
@@ -90,20 +90,18 @@
 							<form:select type="text" path="graduationyear">
 								<c:forEach items="${allyears}" var="year">
 									<c:choose>
-										<c:when test="${year == currentyear}">
-											<option value="${year}" selected>${year}</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${year}">${year}</option>
-										</c:otherwise>
-									</c:choose>
+								<c:when test="${year == education.graduationyear}"><option
+										value="${year}" selected>${year}</option></c:when>
+										<c:otherwise><option value="${year}">${year}</option></c:otherwise>
+								</c:choose>
 								</c:forEach>
 							</form:select>
 						</div>
 						<form:input type="hidden" path="resume" value="${resume.id}" />
 						<input type="submit" value="Save Education" class="submit" />
 					</form:form>
-					<a href="/add/skill"><button>Next</button></a>
+					</c:forEach>
+					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 				</div>
 			</div>
 		</div>

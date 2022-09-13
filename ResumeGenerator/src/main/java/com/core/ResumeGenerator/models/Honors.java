@@ -2,6 +2,7 @@ package com.core.ResumeGenerator.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,9 +27,9 @@ public class Honors {
 	@NotBlank(message="Missing Year Recieved")
 	private String yearawarded;
 	@Column(updatable = false)
-	private Date createdAt;
+	private Date createdAt ;
 	private Date updatedAt;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "resume_id")
 	private Resume resume;
 
@@ -90,5 +91,10 @@ public class Honors {
 	@PreUpdate
 	protected void onUpdate(){
 	    this.updatedAt= new Date();
+	}
+
+	public void remove(Honors honors) {
+		// TODO Auto-generated method stub
+		
 	}
 }

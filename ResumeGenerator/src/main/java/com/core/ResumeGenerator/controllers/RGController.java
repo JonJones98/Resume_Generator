@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.core.ResumeGenerator.models.Education;
 import com.core.ResumeGenerator.models.Experiance;
@@ -104,6 +106,7 @@ public class RGController {
 			model.addAttribute("allhonors", honorsId);
 			model.addAttribute("allprojects", projectsId);
 			model.addAttribute("allskills", skillsId);
+			model.addAttribute("resume", resume);
 			return "resumeTemplate.jsp";
 		} catch (Exception e) {
 			model.addAttribute("allresumes", educationId);
@@ -121,6 +124,60 @@ public class RGController {
 		}
 		catch(Exception e){
 			return "redirect:/login_user";
+		}
+	}
+	@GetMapping("/resume/{id}/edit/{secID}")
+	public String editshow(Model model,@PathVariable("id") Long id,@PathVariable("secID") Long secID,@ModelAttribute("education") Education education,@ModelAttribute("experiance") Experiance experiance,@ModelAttribute("headerinfo") Headerinfo headerinfo,@ModelAttribute("honor") Honors honor,@ModelAttribute("skill") Skills skill,@ModelAttribute("project") Projects project, HttpSession session) {
+		List<String> years = new ArrayList<String>();
+		int endYear = Calendar.getInstance().get(Calendar.YEAR);
+		String currentyear=String.valueOf(endYear);
+		for(int year=endYear-100;year<= endYear+100; year++) {
+			String y=String.valueOf(year);
+			years.add(y);
+		}
+		Resume resume = resumes.findById(id);
+		List<Education> educationId = educations.byResume(resume);
+		List<Experiance> experianceId = experiances.byResume(resume);
+		List<Headerinfo> headerinfoId = headerinfos.byResume(resume);
+		List<Honors> honorsId = honors.byResume(resume);
+		List<Projects> projectsId = projects.byResume(resume);
+		List<Skills> skillsId = skills.byResume(resume);
+		try {
+			Long userId = (Long) session.getAttribute("userId");
+			model.addAttribute("user", users.findById(userId));
+			model.addAttribute("resume", resume);
+			model.addAttribute("alleducations", educationId);
+			model.addAttribute("allexperiances", experianceId);
+			model.addAttribute("allheaderinfos", headerinfoId);
+			model.addAttribute("allhonors", honorsId);
+			model.addAttribute("allprojects", projectsId);
+			model.addAttribute("allskills", skillsId);
+			model.addAttribute("currentyear", currentyear);
+			model.addAttribute("allyears", years);
+			if(secID==1) {
+				return "headerinfo_edit.jsp";
+			}
+			if(secID==2) {
+				return "education_edit.jsp";
+			}
+			if(secID==3) {
+				return "skill_edit.jsp";
+			}
+			if(secID==4) {
+				return "experiance_edit.jsp";
+			}
+			if(secID==5) {
+				return "project_edit.jsp";
+			}
+			if(secID==6) {
+				return "honor_edit.jsp";
+			}
+			else {
+				return "dashboard.jsp"; 
+			}
+		} catch (Exception e) {
+			model.addAttribute("allresumes", educationId);
+			return "dashboard.jsp";
 		}
 	}
 	
@@ -373,4 +430,61 @@ public class RGController {
 		skills.create(skill);
 		return "redirect:/add/skill";
 	}
+	@PutMapping("/resume/{id}/update_education")
+	public String updatingeducation(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education, BindingResult result) {
+			if(result.hasErrors()) {
+				return "education_edit.jsp";}
+			System.out.println(resume.getId());
+			System.out.println(education.getName());
+			educations.update(education);
+			return "redirect:/resume/"+resume.getId()+"/edit/2";
+	}
+	@PutMapping("/resume/{id}/update_experiance")
+	public String updatingexperiance(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+			if(result.hasErrors()) {
+				return "resumeinfoform.jsp";
+			}
+			experiances.update(experiance);
+			return "resumeinfoform.jsp";
+	}
+	@PutMapping("/resume/{id}/update_project")
+	public String updatingproject(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+			if(result.hasErrors()) {
+				return "resumeinfoform.jsp";
+			}
+			
+			projects.update(project);
+			return "resumeinfoform.jsp";
+	}
+	@PutMapping("/resume/{id}/update_skill")
+	public String updatingskill(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+			if(result.hasErrors()) {
+				return "resumeinfoform.jsp";
+			}
+			skills.update(skill);
+			return "resumeinfoform.jsp";
+	}
+	@PutMapping("/resume/{id}/update_honor")
+	public String updatinghonor(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+			if(result.hasErrors()) {
+				return "resumeinfoform.jsp";
+			}
+			honors.update(honor);
+			return "redirect:/resume/{id}/update_education";
+	}
+	@PutMapping("/resume/{id}/update_headerinfo")
+	public String updatingheaderinfo(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+			if(result.hasErrors()) {
+				return "resumeinfoform.jsp";
+			}
+			headerinfos.update(headerinfo);
+			return "redirect:/resume/{id}/edit";
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		resumes.delete(id);
+		return "redirect:/";
+	}
+
 }

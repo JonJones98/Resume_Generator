@@ -23,8 +23,8 @@
 
 <body class="LRpage_setup">
 <ul class="topnav">
-        <li><a class="active" href="/">Home</a></li>
-        <li><a href="/create">Resume Generator</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a class="active" href="/create">Resume Generator</a></li>
         <c:choose>
         	<c:when test="${user.firstname != null}"><li class="right"><a href="/logout">Logout</a></li></c:when>
         	<c:otherwise>
@@ -32,38 +32,22 @@
         	</c:otherwise>
         </c:choose>
       </ul>
-     <div class="LR_body">
 		<h1>Welcome ${user.firstname}</h1>
-	<div class="table_width">
-		<table class="table table-striped table-bordered table-sm" id ="table_setup">
-			<thead>
-				<tr>
-					<th>Resume ID</th>
-					<th>Date Created</th>
-					<th>Date Updated</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${allresumes}" var="resume">
-					<tr>
-						<td><a href="/preview/${resume.id}">Resume ${resume.id}</a></td>
-						<td><fmt:formatDate value="${resume.createdAt}" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td><fmt:formatDate value="${resume.updatedAt}" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td><a href="/resume/${resume.id}/edit"><button>Edit</button></a>
-						<form action="/delete/${resume.id}" method="post">
-							<input type="hidden" name="_method" value="delete"> <input
-							type="submit" value="Delete" class="delete">
-						</form>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+	<h3>Header Information</h3>
+	<c:forEach items="${allheaderinfos}" var="headerinfo"><p>${headerinfo.firstname} ${headerinfo.middlename} ${headerinfo.lastname}  ${headerinfo.email} </p></c:forEach>
+	<h3>Educations</h3>
+	<c:forEach items="${alleducations}" var="education"><p>${education.name}  ${education.graduationyear} </p></c:forEach>
+	<h3>Skills</h3>
+	<c:forEach items="${allskills}" var="skill"><p>${skill.name}</p></c:forEach>
+	<h3>Experiences</h3>
+	<c:forEach items="${allexperiances}" var="experiance"><p>${experiance.name}  ${experiance.rolename} </p><a href="experiance_edit.jsp"><button></button></a></c:forEach>
+	<h3>Projects</h3>
+	<c:forEach items="${allprojects}" var="project"><p>${project.name}</p></c:forEach>
+	<h3>Honors</h3>
+	<c:forEach items="${allhonors}" var="honor"><p>${honor.name}  ${honor.yearawarded} </p></c:forEach>
 		<c:choose>
         	<c:when test="${user.firstname != null}"><a href="/create"><button>Create Resume</button></a></c:when>
         </c:choose>
-	</div>
 	</div>
 </body>
 </html>

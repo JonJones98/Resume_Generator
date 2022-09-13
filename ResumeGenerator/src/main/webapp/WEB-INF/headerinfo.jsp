@@ -28,15 +28,16 @@
 		<li><a class="active">Resume Generator</a></li>
 <li class="right"><a href="/logout">Logout</a></li>
 	</ul>
-	<div>
+	<div class="LR_body">
 		<h1>Resume Information Form</h1>
 	</div>
-	<div>
+	<div class="LR_body">
 		<div>
 				<div class="Form_setup">
 					<div class="SubForm_setup">
-						<div>
-							<p>Personal Info</p>
+						<div class="Subtitle_setup">
+						<h3>Personal Info</h3>
+						<h3>1 of 6</h3>
 						</div>
 						
 						<form:form action="/hdr/new" method="post" modelAttribute="headerinfo"

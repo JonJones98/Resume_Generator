@@ -2,6 +2,7 @@ package com.core.ResumeGenerator.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,7 +40,7 @@ public class Experiance {
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name="resume_id")
     private Resume resume;
 	
@@ -142,5 +143,10 @@ public class Experiance {
 	@PreUpdate
 	protected void onUpdate(){
 	    this.updatedAt= new Date();
+	}
+
+	public void remove(Experiance experiance) {
+		// TODO Auto-generated method stub
+		
 	}
 }

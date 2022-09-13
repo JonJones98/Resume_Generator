@@ -27,9 +27,16 @@
 		<li><a class="active">Resume Generator</a></li>
 <li class="right"><a href="/logout">Logout</a></li>
 	</ul>
+	<div class="LR_body">
+		<h1>Resume Information Form</h1>
+	</div>
+	<div class="LR_body">
+		<div>
+			<div class="Form_setup">
 	<div class="SubForm_setup">
-						<div>
-							<p>Projects</p>
+						<div class="Subtitle_setup">
+						<h3>Projects</h3>
+						<h3>5 of 6</h3>
 						</div>
 						<c:forEach items="${allprojects}" var="project"><p>${project.name}  ${project.startyear} ${project.endyear}</p></c:forEach>
 						<form:form action="/prj/new" method="post" modelAttribute="project"
@@ -72,6 +79,9 @@
 							<form:input type="hidden" path="resume" value="${resume.id}" />
 						</form:form>
 						<a href="/add/honors"><button>Next</button></a>
+					</div>
+					</div>
+					</div>
 					</div>
 </body>
 </html>

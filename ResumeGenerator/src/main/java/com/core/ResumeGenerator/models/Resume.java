@@ -3,6 +3,7 @@ package com.core.ResumeGenerator.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="resume")
@@ -23,17 +23,17 @@ public class Resume {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Headerinfo> headerinfo;
-	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Experiance> experiance;
-	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Education> education;
-	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Skills> skills;
-	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Projects> projects;
-	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="resume",fetch=FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Honors> honors;
 	@Column(updatable=false)
     private Date createdAt;
@@ -42,6 +42,7 @@ public class Resume {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
+	
     private User user;
 	public Resume() {
 	}
@@ -112,7 +113,37 @@ public class Resume {
 	@PreUpdate
 	protected void onUpdate(){
 	    this.updatedAt= new Date();
-	}	
+	}
+	public Resume removeHeaderinfo(Headerinfo headerinfo) {
+		headerinfo.remove(headerinfo);
+		headerinfo.setResume(null);
+		return this;
+	}
+	public Resume removeExperiance(Experiance experiance) {
+		experiance.remove(experiance);
+		experiance.setResume(null);
+		return this;
+	}
+	public Resume removeEducation(Education education) {
+		education.remove(education);
+		education.setResume(null);
+		return this;
+	}
+	public Resume removeProjects(Projects projects) {
+		projects.remove(projects);
+		projects.setResume(null);
+		return this;
+	}
+	public Resume removeSkills(Skills skills) {
+		skills.remove(skills);
+		skills.setResume(null);
+		return this;
+	}
+	public Resume removeHonors(Honors honors) {
+		honors.remove(honors);
+		honors.setResume(null);
+		return this;
+	}
 	
 	
 }

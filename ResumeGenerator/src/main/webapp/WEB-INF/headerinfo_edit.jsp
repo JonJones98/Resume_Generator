@@ -21,6 +21,7 @@
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body class="LRpage_setup">
 	<ul class="topnav">
 		<li><a href="/">Home</a></li>
@@ -32,40 +33,46 @@
 	</div>
 	<div class="LR_body">
 		<div>
-			<div class="Form_setup">
-	<div class="SubForm_setup">
-						<div class="Subtitle_setup">
-						<h3>Activities & Honors</h3>
-						<h3>6 of 6</h3>
+				<div class="Form_setup">
+					<div class="SubForm_setup">
+						<div>
+							<p>Personal Info</p>
 						</div>
-						<c:forEach items="${allhonors}" var="honor"><p>${honor.name}  ${honor.yearawarded}</p></c:forEach>
-						<form:form action="/hrs/new" method="post" modelAttribute="honor"
+						
+						<form:form action="/resume/${resume.id}/update_headerinfo" method="post" modelAttribute="headerinfo"
 							class="error ">
-							<form:errors path="name" class="text-danger" />
+							<input type="hidden" name="_method" value="put"/>
 							<div class="Form_position">
-								<form:label path="name">Name of Activity/Honor:</form:label>
-								<form:input type="text" path="name" />
+								<form:label path="firstname">First Name:</form:label>
+								<form:input type="text" path="firstname" value="${headerinfo.firstname}" />
 							</div>
-
 							<div class="Form_position">
-								<form:label path="yearawarded">Year Received:</form:label>
-								<form:select type="text" path="yearawarded">
-								<c:forEach items="${allyears}" var="year">
-									<c:choose>
-								<c:when test="${year == currentyear}"><option
-										value="${year}" selected>${year}</option></c:when>
-										<c:otherwise><option value="${year}">${year}</option></c:otherwise>
-								</c:choose>
-								</c:forEach>
-							</form:select>
+								<form:label path="middlename">Middle Initial:</form:label>
+								<form:input type="text" path="middlename" value="${headerinfo.middlename}" />
 							</div>
-							<input type="submit" value="Save Activity or Honor" class="submit" />
+							<div class="Form_position">
+								<form:label path="lastname">Last Name:</form:label>
+								<form:input type="text" path="lastname" value="${headerinfo.lastname}" />
+							</div>
+							<div class="Form_position">
+								<form:label path="email">Email:</form:label>
+								<form:input type="text" path="email" value="${headerinfo.email}"/>
+							</div>
+							<div class="Form_position">
+								<form:label path="linkedin">Linkedin Link:</form:label>
+								<form:input type="text" path="linkedin" value="${headerinfo.linkedin}"/>
+							</div>
+							<div class="Form_position">
+								<form:label path="github">Github Link:</form:label>
+								<form:input type="text" path="github" value="${headerinfo.github}"/>
+							</div>
 							<form:input type="hidden" path="resume" value="${resume.id}" />
+							<input type="submit" value="Update" class="submit" />
 						</form:form>
-						<a href="/preview/${resume.id}"><button>Create</button></a>
-						</div>
+						<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 					</div>
-					</div>
-					</div>
+				</div>
+		</div>
+	</div>
 </body>
 </html>

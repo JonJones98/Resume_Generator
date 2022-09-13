@@ -33,12 +33,11 @@
         	</c:otherwise>
         </c:choose>
 	</ul>
-	<div>
+	<div class="LR_body">
 		<h1>Resume Generator</h1>
-		<p>Click to begin</p>
 						<form:form  action="/resume/new" method="post" modelAttribute="resume">
 							<form:input type="hidden" path="user" value="${user.id}" />
-							<input type="submit" value="Begin" class="submit" />
+							<input type="submit" value="Click To Begin" class="submit" />
 						</form:form>
 	</div>
 </body>

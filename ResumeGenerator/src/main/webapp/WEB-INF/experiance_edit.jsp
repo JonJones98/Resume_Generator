@@ -34,43 +34,32 @@
 		<div>
 			<div class="Form_setup">
 				<div class="SubForm_setup">
-					<div class="Subtitle_setup">
-						<h3>Education</h3>
-						<h3>2 of 6</h3>
+					<div>
+						<p>Experiance</p>
 					</div>
-					<c:forEach items="${alleducations}" var="education">
-						<p>${education.name}${education.degreetype}${education.major}
-							${education.enrolledyear} ${education.graduationyear}</p>
+					<c:forEach items="${allexperiances}" var="experiance">
+						<p>${experiance.name}${experiance.rolename}</p>
 					</c:forEach>
-					<form:form action="/edu/new" method="post"
-						modelAttribute="education">
+					<form:form action="/resume/${resume.id}/update_experiance" method="post"
+						modelAttribute="experiance" class="error ">
 						<form:errors path="name" class="text-danger" />
 						<div class="Form_position">
-							<form:label path="name">School Name:</form:label>
+							<form:label path="name">Company Name:</form:label>
 							<form:input type="text" path="name" />
 						</div>
 						<form:errors path="city" class="text-danger" />
 						<div class="Form_position">
-							<form:label path="city">School City:</form:label>
+							<form:label path="city">Company City:</form:label>
 							<form:input type="text" path="city" />
 						</div>
 						<form:errors path="state" class="text-danger" />
 						<div class="Form_position">
-							<form:label path="state">School State:</form:label>
+							<form:label path="state">Company State:</form:label>
 							<form:input type="text" path="state" />
 						</div>
 						<div class="Form_position">
-							<form:label path="degreetype">Degree type:</form:label>
-							<form:input type="text" path="degreetype" />
-						</div>
-						<div class="Form_position">
-							<form:label path="major">Major:</form:label>
-							<form:input type="text" path="major" />
-						</div>
-						<form:errors path="enrolledyear" class="text-danger" />
-						<div class="Form_position">
-							<form:label path="enrolledyear">Enrolled Year:</form:label>
-							<form:select type="text" path="enrolledyear">
+							<form:label path="startyear">Start Year:</form:label>
+							<form:select type="text" path="startyear">
 								<c:forEach items="${allyears}" var="year">
 									<c:choose>
 										<c:when test="${year == currentyear}">
@@ -82,31 +71,41 @@
 									</c:choose>
 								</c:forEach>
 							</form:select>
+						</div>
+						<div class="Form_position">
+							<form:label path="endyear">End Year:</form:label>
+							<form:select type="text" path="endyear">
+								<c:forEach items="${allyears}" var="year">
+									<c:choose>
+										<c:when test="${year == currentyear}">
+											<option value="${year}" selected>${year}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${year}">${year}</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</form:select>
+						</div>
+						<form:errors path="rolename" class="text-danger" />
+						<div class="Form_position">
 
+							<form:label path="rolename">Position Title:</form:label>
+							<form:input type="text" path="rolename" />
 						</div>
-						<form:errors path="graduationyear" class="text-danger" />
 						<div class="Form_position">
-							<form:label path="graduationyear">Graduation Year:</form:label>
-							<form:select type="text" path="graduationyear">
-								<c:forEach items="${allyears}" var="year">
-									<c:choose>
-										<c:when test="${year == currentyear}">
-											<option value="${year}" selected>${year}</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${year}">${year}</option>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</form:select>
+							<form:errors path="decription" class="text-danger" />
+							<form:label path="decription">Description:</form:label>
+							<form:textarea type="textarea" row="20" cols="30"
+								path="decription" />
 						</div>
 						<form:input type="hidden" path="resume" value="${resume.id}" />
-						<input type="submit" value="Save Education" class="submit" />
+
+						<input type="submit" value="Save Experiance" class="submit" />
 					</form:form>
-					<a href="/add/skill"><button>Next</button></a>
+					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
 </html>

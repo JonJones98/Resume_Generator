@@ -25,7 +25,7 @@
 	<ul class="topnav">
 		<li><a href="/">Home</a></li>
 		<li><a class="active">Resume Generator</a></li>
-<li class="right"><a href="/logout">Logout</a></li>
+		<li class="right"><a href="/logout">Logout</a></li>
 	</ul>
 	<div class="LR_body">
 		<h1>Resume Information Form</h1>
@@ -33,39 +33,46 @@
 	<div class="LR_body">
 		<div>
 			<div class="Form_setup">
-	<div class="SubForm_setup">
-						<div class="Subtitle_setup">
-						<h3>Activities & Honors</h3>
-						<h3>6 of 6</h3>
+				<div class="SubForm_setup">
+					<div>
+						<p>Activities & Honors</p>
+					</div>
+					<c:forEach items="${allhonors}" var="honor">
+						<p>${honor.name}</p>
+					
+					<form:form action="/resume/${resume.id}/update_honor" method="post" modelAttribute="honor"
+						class="error ">
+						<input type="hidden" name="_method" value="put"/>
+						<form:errors path="name" class="text-danger" />
+						<div class="Form_position">
+							<form:label path="name">Name of Activity/Honor:</form:label>
+							<form:input type="text" path="name" value="${honor.yearawarded}" />
 						</div>
-						<c:forEach items="${allhonors}" var="honor"><p>${honor.name}  ${honor.yearawarded}</p></c:forEach>
-						<form:form action="/hrs/new" method="post" modelAttribute="honor"
-							class="error ">
-							<form:errors path="name" class="text-danger" />
-							<div class="Form_position">
-								<form:label path="name">Name of Activity/Honor:</form:label>
-								<form:input type="text" path="name" />
-							</div>
 
-							<div class="Form_position">
-								<form:label path="yearawarded">Year Received:</form:label>
-								<form:select type="text" path="yearawarded">
+						<div class="Form_position">
+							<form:label path="yearawarded">Year Received:</form:label>
+							<form:select type="text" path="yearawarded">
 								<c:forEach items="${allyears}" var="year">
 									<c:choose>
-								<c:when test="${year == currentyear}"><option
-										value="${year}" selected>${year}</option></c:when>
-										<c:otherwise><option value="${year}">${year}</option></c:otherwise>
-								</c:choose>
+										<c:when test="${year == ${honor.yearawarded}}">
+											<option value="${year}" selected>${year}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${year}">${year}</option>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
 							</form:select>
-							</div>
-							<input type="submit" value="Save Activity or Honor" class="submit" />
-							<form:input type="hidden" path="resume" value="${resume.id}" />
-						</form:form>
-						<a href="/preview/${resume.id}"><button>Create</button></a>
 						</div>
-					</div>
-					</div>
-					</div>
+						<input type="submit" value="Save Activity or Honor" class="submit" />
+						<form:input type="hidden" path="resume" value="c" />
+					</form:form>
+					</c:forEach>
+					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

@@ -23,7 +23,7 @@
 </head>
 
 <body class="LRpage_setup">
-	<div class="page_size2">
+	<div class="page_size">
 		<div class="header_section">
 			<c:forEach items="${allheaderinfos}" var="headerinfo">
 				<div class="name">
@@ -67,7 +67,7 @@
 		</div>
 		<div class="experiance_section">
 			<div class="title">
-				<h2 class="he2">Professional Experiance</h2>
+				<h2 class="he2">Professional Experience</h2>
 			</div>
 			<hr>
 			<c:forEach items="${allexperiances}" var="experiance">

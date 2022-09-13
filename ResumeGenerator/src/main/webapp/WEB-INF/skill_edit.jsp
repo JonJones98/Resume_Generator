@@ -31,25 +31,27 @@
 		<h1>Resume Information Form</h1>
 	</div>
 	<div class="LR_body">
-	<div class="Form_setup">
+		<div>
+			<div class="Form_setup">
 	<div class="SubForm_setup">
-		<div class="Subtitle_setup">
-			<h3>Skills</h3>
-			<h3>3 of 6</h3>
+		<div>
+			<p>Skills</p>
 		</div>
 		<c:forEach items="${allskills}" var="skill">
-			<p>${skill.name}</p>
-		</c:forEach>
-		<form:form action="/skl/new" method="post" modelAttribute="skill">
+		
+		<form:form action="/resume/${resume.id}/update_project" method="post" modelAttribute="skill">
+			<input type="hidden" name="_method" value="put"/>
 			<form:errors path="name" class="text-danger" />
 			<div class="Form_position">
 				<form:label path="name">Skills:</form:label>
-				<form:input type="text" path="name" />
+				<form:input type="text" path="name" value="${skill.name}" />
 			</div>
 			<input type="submit" value="Save Skill" class="submit" />
 			<form:input type="hidden" path="resume" value="${resume.id}" />
 		</form:form>
-		<a href="/add/experience"><button>Next</button></a>
+		</c:forEach>
+	<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
+	</div>
 	</div>
 	</div>
 	</div>

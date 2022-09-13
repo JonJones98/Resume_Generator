@@ -27,9 +27,16 @@
 		<li><a class="active">Resume Generator</a></li>
 <li class="right"><a href="/logout">Logout</a></li>
 	</ul>
+	<div class="LR_body">
+		<h1>Resume Information Form</h1>
+	</div>
+	<div class="LR_body">
+		<div>
+			<div class="Form_setup">
 	<div class="SubForm_setup">
-						<div>
-							<p>Experiance</p>
+						<div class="Subtitle_setup">
+						<h3>Experience</h3>
+						<h3>4 of 6</h3>
 						</div>
 						<c:forEach items="${allexperiances}" var="experiance"><p>${experiance.name}  ${experiance.rolename} </p></c:forEach>
 						<form:form action="/exp/new" method="post" modelAttribute="experiance"
@@ -69,9 +76,7 @@
 								<c:when test="${year == currentyear}"><option
 										value="${year}" selected>${year}</option></c:when>
 										<c:otherwise><option value="${year}">${year}</option></c:otherwise>
-								</c:choose>
-									
-										
+								</c:choose>	
 								</c:forEach>
 							</form:select>
 							</div>
@@ -92,5 +97,8 @@
 						</form:form>
 						<a href="/add/projects"><button>Next</button></a>
 					</div>
+				</div>
+				</div>
+				</div>
 </body>
 </html>
