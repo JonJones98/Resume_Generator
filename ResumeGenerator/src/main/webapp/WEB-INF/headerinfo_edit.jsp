@@ -66,8 +66,8 @@
 								<form:label path="github">Github Link:</form:label>
 								<form:input type="text" path="github" value="${headerinfo.github}"/>
 							</div>
-							<form:input type="hidden" path="resume" value="${resume.id}" />
-							<input type="submit" value="Update" class="submit" />
+							<form:input type="hidden" path="resume" value="${headerinfo.resume.id}" />
+							<input type="submit" value="Update Info" class="submit" />
 						</form:form>
 						<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 					</div>

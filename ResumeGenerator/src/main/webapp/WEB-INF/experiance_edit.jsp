@@ -97,11 +97,11 @@
 							<form:errors path="decription" class="text-danger" />
 							<form:label path="decription">Description:</form:label>
 							<form:textarea type="textarea" row="20" cols="30"
-								path="decription" />
+								path="decription" value="${experiance.decription}"/>
 						</div>
-						<form:input type="hidden" path="resume" value="${resume.id}" />
+						<form:input type="hidden" path="resume" value="${experiance.resume.id}" />
 
-						<input type="submit" value="Save Experiance" class="submit" />
+						<input type="submit" value="Update Experiance" class="submit" />
 					</form:form>
 					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 				</div>

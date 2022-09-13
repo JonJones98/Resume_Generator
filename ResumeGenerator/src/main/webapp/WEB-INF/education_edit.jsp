@@ -97,8 +97,8 @@
 								</c:forEach>
 							</form:select>
 						</div>
-						<form:input type="hidden" path="resume" value="${resume.id}" />
-						<input type="submit" value="Save Education" class="submit" />
+						<form:input type="hidden" path="resume" value="${education.resume.id}" />
+						<input type="submit" value="Update Education" class="submit" />
 					</form:form>
 					</c:forEach>
 					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>

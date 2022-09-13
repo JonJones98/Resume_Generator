@@ -64,8 +64,8 @@
 								</c:forEach>
 							</form:select>
 						</div>
-						<input type="submit" value="Save Activity or Honor" class="submit" />
-						<form:input type="hidden" path="resume" value="c" />
+						<input type="submit" value="Update Activity / Honor" class="submit" />
+						<form:input type="hidden" path="resume" value="${honor.resume.id}" />
 					</form:form>
 					</c:forEach>
 					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>

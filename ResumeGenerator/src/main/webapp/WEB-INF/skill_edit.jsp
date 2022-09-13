@@ -39,15 +39,15 @@
 		</div>
 		<c:forEach items="${allskills}" var="skill">
 		
-		<form:form action="/resume/${resume.id}/update_project" method="post" modelAttribute="skill">
+		<form:form action="/resume/${resume.id}/update_skill" method="post" modelAttribute="skill">
 			<input type="hidden" name="_method" value="put"/>
 			<form:errors path="name" class="text-danger" />
 			<div class="Form_position">
 				<form:label path="name">Skills:</form:label>
 				<form:input type="text" path="name" value="${skill.name}" />
 			</div>
-			<input type="submit" value="Save Skill" class="submit" />
-			<form:input type="hidden" path="resume" value="${resume.id}" />
+			<input type="submit" value="Update Skill" class="submit" />
+			<form:input type="hidden" path="resume" value="${skill.resume.id}" />
 		</form:form>
 		</c:forEach>
 	<a href="/preview/${resume.id}"><button>Back to Resume</button></a>

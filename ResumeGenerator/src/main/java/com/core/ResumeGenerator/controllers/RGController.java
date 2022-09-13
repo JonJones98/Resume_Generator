@@ -434,51 +434,49 @@ public class RGController {
 	public String updatingeducation(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education, BindingResult result) {
 			if(result.hasErrors()) {
 				return "education_edit.jsp";}
-			System.out.println(resume.getId());
-			System.out.println(education.getName());
 			educations.update(education);
 			return "redirect:/resume/"+resume.getId()+"/edit/2";
 	}
 	@PutMapping("/resume/{id}/update_experiance")
-	public String updatingexperiance(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+	public String updatingexperiance(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("experiance") Experiance experiance, BindingResult result) {
 			if(result.hasErrors()) {
 				return "resumeinfoform.jsp";
 			}
 			experiances.update(experiance);
-			return "resumeinfoform.jsp";
+			return "redirect:/resume/"+resume.getId()+"/edit/4";
 	}
 	@PutMapping("/resume/{id}/update_project")
-	public String updatingproject(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+	public String updatingproject(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("resume") Projects project, BindingResult result) {
 			if(result.hasErrors()) {
 				return "resumeinfoform.jsp";
 			}
 			
 			projects.update(project);
-			return "resumeinfoform.jsp";
+			return "redirect:/resume/"+resume.getId()+"/edit/5";
 	}
 	@PutMapping("/resume/{id}/update_skill")
-	public String updatingskill(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+	public String updatingskill(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("skill") Skills skill,BindingResult result) {
 			if(result.hasErrors()) {
 				return "resumeinfoform.jsp";
 			}
 			skills.update(skill);
-			return "resumeinfoform.jsp";
+			return "redirect:/resume/"+resume.getId()+"/edit/3";
 	}
 	@PutMapping("/resume/{id}/update_honor")
-	public String updatinghonor(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+	public String updatinghonor(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("honor") Honors honor, BindingResult result) {
 			if(result.hasErrors()) {
 				return "resumeinfoform.jsp";
 			}
 			honors.update(honor);
-			return "redirect:/resume/{id}/update_education";
+			return "redirect:/resume/"+resume.getId()+"/edit/6";
 	}
 	@PutMapping("/resume/{id}/update_headerinfo")
-	public String updatingheaderinfo(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education,@Valid @ModelAttribute("experiance") Experiance experiance,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,@Valid @ModelAttribute("honor") Honors honor,@Valid @ModelAttribute("skill") Skills skill,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
+	public String updatingheaderinfo(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,BindingResult result) {
 			if(result.hasErrors()) {
 				return "resumeinfoform.jsp";
 			}
 			headerinfos.update(headerinfo);
-			return "redirect:/resume/{id}/edit";
+			return "redirect:/resume/"+resume.getId()+"/edit/1";
 	}
 	
 	@DeleteMapping("/delete/{id}")

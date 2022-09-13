@@ -85,7 +85,7 @@
 								path="description" value="${project.description}"/>
 						</div>
 						<input type="submit" value="Update Project" class="submit" />
-						<form:input type="hidden" path="resume" value="${resume.id}" />
+						<form:input type="hidden" path="resume" value="${project.resume.id}" />
 					</form:form>
 					</c:forEach>
 					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
