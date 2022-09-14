@@ -47,10 +47,10 @@
 			<tbody>
 				<c:forEach items="${allresumes}" var="resume">
 					<tr>
-						<td><a href="/preview/${resume.id}">Resume ${resume.id}</a></td>
+						<td>Resume ${resume.id}</td>
 						<td><fmt:formatDate value="${resume.createdAt}" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td><fmt:formatDate value="${resume.updatedAt}" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td><a href="/resume/${resume.id}/edit"><button>Edit</button></a>
+						<td><a href="/preview/${resume.id}"><button>Edit/Download</button></a>
 						<form action="/delete/${resume.id}" method="post">
 							<input type="hidden" name="_method" value="delete"> <input
 							type="submit" value="Delete" class="delete">

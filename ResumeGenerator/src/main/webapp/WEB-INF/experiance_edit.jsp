@@ -38,31 +38,31 @@
 						<p>Experiance</p>
 					</div>
 					<c:forEach items="${allexperiances}" var="experiance">
-						<p>${experiance.name}${experiance.rolename}</p>
-					</c:forEach>
+						<p>${experiance.rolename}</p>
+					
 					<form:form action="/resume/${resume.id}/update_experiance" method="post"
 						modelAttribute="experiance" class="error ">
 						<form:errors path="name" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="name">Company Name:</form:label>
-							<form:input type="text" path="name" />
+							<form:input type="text" path="name" value="${experiance.name}"/>
 						</div>
 						<form:errors path="city" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="city">Company City:</form:label>
-							<form:input type="text" path="city" />
+							<form:input type="text" path="city" value="${experiance.city}"/>
 						</div>
 						<form:errors path="state" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="state">Company State:</form:label>
-							<form:input type="text" path="state" />
+							<form:input type="text" path="state" value="${experiance.state}"/>
 						</div>
 						<div class="Form_position">
 							<form:label path="startyear">Start Year:</form:label>
 							<form:select type="text" path="startyear">
 								<c:forEach items="${allyears}" var="year">
 									<c:choose>
-										<c:when test="${year == currentyear}">
+										<c:when test="${year == experiance.startyear}">
 											<option value="${year}" selected>${year}</option>
 										</c:when>
 										<c:otherwise>
@@ -77,7 +77,7 @@
 							<form:select type="text" path="endyear">
 								<c:forEach items="${allyears}" var="year">
 									<c:choose>
-										<c:when test="${year == currentyear}">
+										<c:when test="${year == experiance.endyear}">
 											<option value="${year}" selected>${year}</option>
 										</c:when>
 										<c:otherwise>
@@ -91,7 +91,7 @@
 						<div class="Form_position">
 
 							<form:label path="rolename">Position Title:</form:label>
-							<form:input type="text" path="rolename" />
+							<form:input type="text" path="rolename" value="${experiance.rolename}"/>
 						</div>
 						<div class="Form_position">
 							<form:errors path="decription" class="text-danger" />
@@ -103,6 +103,7 @@
 
 						<input type="submit" value="Update Experiance" class="submit" />
 					</form:form>
+					</c:forEach>
 					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 				</div>
 			</div>

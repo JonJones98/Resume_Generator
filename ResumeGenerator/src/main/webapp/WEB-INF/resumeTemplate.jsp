@@ -9,6 +9,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- for rendering errors on PUT routes -->
 <%@ page isErrorPage="true"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,15 +39,15 @@
 				<div class="contact_info">
 					<p class="word">${headerinfo.email}</p>
 					<p class="word">${headerinfo.linkedin}</p>
-					<p class="word">${headerinfo.github}</p>
+					<p class="word"><a href="${headerinfo.github}">${headerinfo.github}</a></p>
 				</div>
 			</c:forEach>
 		</div>
 		<div class="education_section">
 			<div class="title">
 				<h2 class="he2"><a href="/resume/${resume.id}/edit/2">Education</a></h2>
-				<hr>
 			</div>
+			<box></box>
 			<c:forEach items="${alleducations}" var="education">
 				<div class="sub">
 					<div class="sub_right">
@@ -54,7 +55,7 @@
 						<p class="word">${education.degreetype}${education.major}</p>
 					</div>
 					<div class="sub_left">
-						<p class="word">${education.city}${education.state}</p>
+						<p class="word">${education.city}, ${education.state}</p>
 						<p class="word">${education.graduationyear}</p>
 					</div>
 				</div>
@@ -64,31 +65,32 @@
 			<div class="title">
 				<h2 class="he2"><a href="/resume/${resume.id}/edit/3">Skills</a></h2>
 			</div>
-			<hr>
+			<box></box>
+			<div class="sub_skill">
 			<c:forEach items="${allskills}" var="skill">
-				<div class="sub">
-					<p class="word">${skill.name}</p>
+				<div class="sub_left">
+					<p class="word">${skill.name} |</p>
 				</div>
 			</c:forEach>
+			</div>
 		</div>
 		<div class="experiance_section">
 			<div class="title">
 				<h2 class="he2"><a href="/resume/${resume.id}/edit/4">Professional Experience</a></h2>
 			</div>
-			<hr>
+			<box></box>
 			<c:forEach items="${allexperiances}" var="experiance">
 				<div class="sub">
 					<div class="sub_right">
 						<p class="word">${experiance.name}</p>
-						
 					</div>
 					<div class="sub_left">
-						<p class="word">${experiance.city},${experiance.state}</p>
+						<p class="word">${experiance.city}, ${experiance.state}</p>
 						<p class="word">${experiance.startyear}-${experiance.endyear}</p>
 					</div>
 				</div>
 			<div class="sub_bottom">
-				<p class="word">Description</p>
+				<p class="paragraph">• ${experiance.decription}</p>
 			</div>
 		</c:forEach>
 		</div>
@@ -96,15 +98,15 @@
 			<div class="title">
 				<h2 class="he2"><a href="/resume/${resume.id}/edit/5">Projects</a></h2>
 			</div>
-			<hr>
+			<box></box>
 			<c:forEach items="${allprojects}" var="project">
 			<div class="sub">
 				<div class="sub_right">
 					<p class="word">${project.name}</p>
-					<p class="word">${project.description}</p>
+					<p class="paragraph">• ${project.description}</p>
 				</div>
 				<div class="sub_left">
-					<p class="word">${project.startyear}</p>
+					<p class="word">${project.startyear} - ${project.endyear}</p>
 				</div>
 			</div>
 			</c:forEach>
@@ -113,16 +115,20 @@
 			<div class="title">
 				<h2 class="he2"><a href="/resume/${resume.id}/edit/6">Activities & Honors</a></h2>
 			</div>
-			<hr>
+			<box></box>
+			<div class="sub_skill">
 			<c:forEach items="${allhonors}" var="honor">
-			<div class="sub_bottom">
-				<p class="word">${honor.name}(${honor.yearawarded})</p>
+			<div class="sub_left">
+				<p class="word">${honor.name}(${honor.yearawarded}) | </p>
 			</div>
 			</c:forEach>
+			</div>
 		</div>
 	</div>
 	<div>
-	<button>Save As</button>
+	<div>
+	</div>
+	<a href="/export/${resume.id}"><button>Download Resume</button></a>
 	</div>
 	</div>
 	

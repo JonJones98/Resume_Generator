@@ -114,6 +114,44 @@ public class RGController {
 		}
 
 	}
+	@GetMapping("/export/{id}")
+	public String export(@PathVariable("id") Long id,HttpSession session, Model model) {
+		// userId not found
+		// if(session.getAttribute("userId")==null) {
+		// return "redirect:/logout";
+		// }
+		Resume resume = resumes.findById(id);
+		List<Education> educationId = educations.byResume(resume);
+		List<Experiance> experianceId = experiances.byResume(resume);
+		List<Headerinfo> headerinfoId = headerinfos.byResume(resume);
+		List<Honors> honorsId = honors.byResume(resume);
+		List<Projects> projectsId = projects.byResume(resume);
+		List<Skills> skillsId = skills.byResume(resume);
+		List<String> years = new ArrayList<String>();
+		int endYear = Calendar.getInstance().get(Calendar.YEAR);
+		String currentyear=String.valueOf(endYear);
+		for(int year=endYear-100;year<= endYear+100; year++) {
+			String y=String.valueOf(year);
+			years.add(y);
+		}
+		try {
+			Long userId = (Long) session.getAttribute("userId");
+			model.addAttribute("user", users.findById(userId));
+			model.addAttribute("alleducations", educationId);
+			model.addAttribute("allexperiances", experianceId);
+			model.addAttribute("allheaderinfos", headerinfoId);
+			model.addAttribute("allhonors", honorsId);
+			model.addAttribute("allprojects", projectsId);
+			model.addAttribute("allskills", skillsId);
+			model.addAttribute("resume", resume);
+			model.addAttribute("allyears", years);
+			return "resumeTemplatePrint.jsp";
+		} catch (Exception e) {
+			model.addAttribute("allresumes", educationId);
+			return "dashboard.jsp";
+		}
+
+	}
 	@GetMapping("/create")
 	public String newresume(@ModelAttribute("resume") Resume resume,Model model,HttpSession session ) {
 		try {
@@ -152,8 +190,8 @@ public class RGController {
 			model.addAttribute("allhonors", honorsId);
 			model.addAttribute("allprojects", projectsId);
 			model.addAttribute("allskills", skillsId);
-			model.addAttribute("currentyear", currentyear);
 			model.addAttribute("allyears", years);
+			
 			if(secID==1) {
 				return "headerinfo_edit.jsp";
 			}

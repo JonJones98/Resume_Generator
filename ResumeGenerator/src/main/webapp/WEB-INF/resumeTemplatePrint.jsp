@@ -1,24 +1,39 @@
-@charset "UTF-8";
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="application/msword"
+	pageEncoding="UTF-8"%>
+<!-- c:out ; c:forEach etc. -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- Formatting (dates) -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!-- form:form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- for rendering errors on PUT routes -->
+<%@ page isErrorPage="true"%>
 
-body {
-	font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,
-		sans-serif;
-	background-color: white;
-	z-index: -1;
-}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Resume Information Form</title>
+
+<!-- change to match your file/naming structure -->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+
 
 h1 {
 	font-family: Roboto;
-	color: #189AB4;
+	color: black;
 }
 
 h2 {
 	font-family: Roboto;
-	color: #189AB4;
+	color: black;
 }
 
 #lab {
-	color: #0b0c10;;
+	color: black;;
 }
 
 #lab2 {
@@ -257,8 +272,6 @@ button:hover {
 	user-select: none;
 	-webkit-user-select: none;
 	touch-action: manipulation;
-	width:100%;
-	margin-bottom:5%;
 }
 
 .layout {
@@ -333,6 +346,7 @@ ul.topnav li.right {
 	margin: .5% 0%;
 	padding-left: 1%;
 	height:fit-content;
+	border: solid red 2px;
 	
 }
 
@@ -439,7 +453,7 @@ ul.topnav li.right {
 	height: 700px;
 	font-size: 1px;
 	border: solid black 2px;
-	margin-bottom: 1%;
+	margin-bottom: 3%;
 }
 box{
 	display: block;
@@ -473,7 +487,7 @@ a {
 	text-decoration: none;
 }
 .word {
-	font-size: 7pt;
+	font-size: 10pt;
 	font-family: Arial, Helvetica, sans-serif;
 	width: max-content;
 	padding-top:1%;
@@ -501,21 +515,21 @@ a {
 }
 
 .he1 {
-	font-size: 16pt;
+	font-size: 18pt;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: black;
 }
 
 .he2 {
-	font-size: 11pt;
+	font-size: 14pt;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: black;
 }
 
 .he3 {
-	font-size: 10pt;
+	font-size: 13pt;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: black;
@@ -538,3 +552,110 @@ a {
 		font-size: 12pt*.7727;
 	}
 }
+</style>
+</head>
+
+<body>
+	<div class="page_size">
+		<div class="header_section" style="">
+			<c:forEach items="${allheaderinfos}" var="headerinfo">
+				<div class="name">
+					<h1 class="he1">${headerinfo.firstname} ${headerinfo.middlename} ${headerinfo.lastname}</h1>
+				</div>
+				<div class="contact_info">
+					<p class="word">${headerinfo.email}</p>
+					<p class="word">${headerinfo.linkedin}</p>
+					<p class="word"><a href="${headerinfo.github}">${headerinfo.github}</a></p>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="education_section">
+			<div class="title">
+				<h2 class="he2">Education</h2>
+			</div>
+			<box></box>
+			<c:forEach items="${alleducations}" var="education">
+				<div class="sub">
+					<div class="sub_right">
+						<p class="word">${education.name}</p>
+						<p class="word">${education.degreetype}${education.major}</p>
+					</div>
+					<div class="sub_left">
+						<p class="word">${education.city}, ${education.state}</p>
+						<p class="word">${education.graduationyear}</p>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="skill_section">
+			<div class="title">
+				<h2 class="he2">Skills</h2>
+			</div>
+			<box></box>
+			<div class="sub_skill">
+			<c:forEach items="${allskills}" var="skill">
+				<div class="sub_left">
+					<p class="word">${skill.name} | </p>
+				</div>
+			</c:forEach>
+			</div>
+		</div>
+		<div class="experiance_section">
+			<div class="title">
+				<h2 class="he2">Professional Experience</h2>
+			</div>
+			<box></box>
+			<c:forEach items="${allexperiances}" var="experiance">
+				<div class="sub">
+					<div class="sub_right">
+						<p class="word">${experiance.name}</p>
+					</div>
+					<div class="sub_left">
+						<p class="word">${experiance.city},${experiance.state}</p>
+						<p class="word">${experiance.startyear}-${experiance.endyear}</p>
+					</div>
+				</div>
+			<div class="sub_bottom">
+				<p class="paragraph">• ${experiance.decription}</p>
+			</div>
+		</c:forEach>
+		</div>
+		<div class="project_section">
+			<div class="title">
+				<h2 class="he2">Projects</h2>
+			</div>
+			<box></box>
+			<c:forEach items="${allprojects}" var="project">
+			<div class="sub">
+				<div class="sub_right">
+					<p class="word">${project.name}</p>
+					<p class="paragraph">• ${project.description}</p>
+				</div>
+				<div class="sub_left">
+					<p class="word">${project.startyear} - ${project.endyear}</p>
+				</div>
+			</div>
+			</c:forEach>
+		</div>
+		<div class="honor_section">
+			<div class="title">
+				<h2 class="he2">Activities & Honors</h2>
+			</div>
+			<box></box>
+			<div class="sub_skill">
+			<c:forEach items="${allhonors}" var="honor">
+			<div class="sub_left">
+				<p class="word">${honor.name}(${honor.yearawarded}) | </p>
+			</div>
+			</c:forEach>
+			</div>
+		</div>
+	</div>
+	<div>
+	<div>
+	</div>
+	</div>
+	</div>
+	
+</body>
+</html>

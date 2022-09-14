@@ -46,7 +46,7 @@
 						<form:errors path="name" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="name">Name of Activity/Honor:</form:label>
-							<form:input type="text" path="name" value="${honor.yearawarded}" />
+							<form:input type="text" path="name" value="${honor.name}" />
 						</div>
 
 						<div class="Form_position">
@@ -54,7 +54,7 @@
 							<form:select type="text" path="yearawarded">
 								<c:forEach items="${allyears}" var="year">
 									<c:choose>
-										<c:when test="${year == ${honor.yearawarded}}">
+										<c:when test="${year == honor.yearawarded}}">
 											<option value="${year}" selected>${year}</option>
 										</c:when>
 										<c:otherwise>

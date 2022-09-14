@@ -80,7 +80,7 @@
 					
 				</div>
 				</div>
-				<input type="submit" value="Register" class="submit"/>
+				<input type="submit" value="Register" class="login"/>
 				
 			</form:form>
 		</div>

@@ -38,7 +38,7 @@
 						<div>
 							<p>Personal Info</p>
 						</div>
-						
+						<c:forEach items="${allheaderinfos}" var="headerinfo">
 						<form:form action="/resume/${resume.id}/update_headerinfo" method="post" modelAttribute="headerinfo"
 							class="error ">
 							<input type="hidden" name="_method" value="put"/>
@@ -69,6 +69,7 @@
 							<form:input type="hidden" path="resume" value="${headerinfo.resume.id}" />
 							<input type="submit" value="Update Info" class="submit" />
 						</form:form>
+						</c:forEach>
 						<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 					</div>
 				</div>
