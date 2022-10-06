@@ -11,7 +11,7 @@ import com.core.ResumeGenerator.models.Projects;
 import com.core.ResumeGenerator.models.Resume;
 import com.core.ResumeGenerator.models.Skills;
 import com.core.ResumeGenerator.models.User;
-import com.core.ResumeGenerator.repositories.Educationrepo;
+import com.core.ResumeGenerator.repositories.EducationRepository;
 import com.core.ResumeGenerator.repositories.ExperianceRepo;
 import com.core.ResumeGenerator.repositories.HeaderinfoRepo;
 import com.core.ResumeGenerator.repositories.HonorsRepo;
@@ -19,13 +19,13 @@ import com.core.ResumeGenerator.repositories.ProjectsRepo;
 import com.core.ResumeGenerator.repositories.SkillsRepo;
 
 public class SectionofResumeServeice {
-	private final Educationrepo edurepo;
+	private final EducationRepository edurepo;
 	private final ExperianceRepo exprepo;
 	private final HeaderinfoRepo hdrrepo;
 	private final HonorsRepo hrsrepo;
 	private final ProjectsRepo prjrepo;
 	private final SkillsRepo sklrepo;
-	public SectionofResumeServeice(Educationrepo edurepo, ExperianceRepo exprepo, HeaderinfoRepo hdrrepo,
+	public SectionofResumeServeice(EducationRepository edurepo, ExperianceRepo exprepo, HeaderinfoRepo hdrrepo,
 			HonorsRepo hrsrepo, ProjectsRepo prjrepo, SkillsRepo sklrepo) {
 		super();
 		this.edurepo = edurepo;

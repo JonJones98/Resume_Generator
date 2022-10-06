@@ -39,7 +39,7 @@
 		</div>
 		<c:forEach items="${allskills}" var="skill">
 		
-		<form:form action="/resume/${resume.id}/update_skill" method="post" modelAttribute="skill">
+		<form:form action="/resume/${resume.id}/${skill.id}/update_skill" method="post" modelAttribute="skill">
 			<input type="hidden" name="_method" value="put"/>
 			<form:errors path="name" class="text-danger" />
 			<div class="Form_position">

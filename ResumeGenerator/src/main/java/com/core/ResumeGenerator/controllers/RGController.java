@@ -145,7 +145,7 @@ public class RGController {
 			model.addAttribute("allskills", skillsId);
 			model.addAttribute("resume", resume);
 			model.addAttribute("allyears", years);
-			return "resumeTemplatePrint.jsp";
+			return "resumeTemplate2.jsp";
 		} catch (Exception e) {
 			model.addAttribute("allresumes", educationId);
 			return "dashboard.jsp";
@@ -377,7 +377,7 @@ public class RGController {
 		return "redirect:/";
 	}
 	@PostMapping("/resume/new")
-	public String creatingshow(@Valid @ModelAttribute("resume") Resume resume, BindingResult result,HttpSession session) {
+	public String creatingresume(@Valid @ModelAttribute("resume") Resume resume, BindingResult result,HttpSession session) {
 		
 			if(result.hasErrors()) {
 				return "resumeinfoform.jsp";
@@ -468,53 +468,76 @@ public class RGController {
 		skills.create(skill);
 		return "redirect:/add/skill";
 	}
-	@PutMapping("/resume/{id}/update_education")
-	public String updatingeducation(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("education") Education education, BindingResult result) {
+	@PutMapping("/resume/{id}/{pid}/update_education")
+	public String updatingeducation(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("education") Education education, BindingResult result) {
 			if(result.hasErrors()) {
 				return "education_edit.jsp";}
+			Education thisedu=educations.find(pid);
+			education.setId(thisedu.getId());
 			educations.update(education);
-			return "redirect:/resume/"+resume.getId()+"/edit/2";
+			return "redirect:/resume/"+id+"/edit/2";
 	}
-	@PutMapping("/resume/{id}/update_experiance")
-	public String updatingexperiance(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("experiance") Experiance experiance, BindingResult result) {
+	@PutMapping("/resume/{id}/{pid}/update_experiance")
+	public String updatingexperiance(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("experiance") Experiance experiance, BindingResult result) {
 			if(result.hasErrors()) {
-				return "resumeinfoform.jsp";
+				return "experiance_edit.jsp";
 			}
+			Experiance thisexp=experiances.find(pid);
+			experiance.setId(thisexp.getId());
 			experiances.update(experiance);
-			return "redirect:/resume/"+resume.getId()+"/edit/4";
+			return "redirect:/resume/"+id+"/edit/4";
 	}
-	@PutMapping("/resume/{id}/update_project")
-	public String updatingproject(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("resume") Projects project, BindingResult result) {
+	@PutMapping("/resume/{id}/{pid}/update_project")
+	public String updatingproject(Model model,@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("project") Projects project, BindingResult result) {
 			if(result.hasErrors()) {
-				return "resumeinfoform.jsp";
+				List<String> years = new ArrayList<String>();
+				int endYear = Calendar.getInstance().get(Calendar.YEAR);
+				String currentyear=String.valueOf(endYear);
+				for(int year=endYear-100;year<= endYear+100; year++) {
+					String y=String.valueOf(year);
+					years.add(y);
+				}
+				Resume resume = resumes.findById(id);
+				model.addAttribute("allyears", years);
+				model.addAttribute("currentyear", currentyear);
+				model.addAttribute("allprojects", projects.byResume(resume));
+				model.addAttribute("resume", resume);
+				return "project_edit.jsp";
 			}
-			
+			Projects thisprj=projects.find(pid);
+			project.setId(thisprj.getId());
 			projects.update(project);
-			return "redirect:/resume/"+resume.getId()+"/edit/5";
+			return "redirect:/resume/"+id+"/edit/5";
 	}
-	@PutMapping("/resume/{id}/update_skill")
-	public String updatingskill(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("skill") Skills skill,BindingResult result) {
+	@PutMapping("/resume/{id}/{pid}/update_skill")
+	public String updatingskill(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("skill") Skills skill,BindingResult result) {
 			if(result.hasErrors()) {
-				return "resumeinfoform.jsp";
+				return "skill_edit.jsp";
 			}
+			Skills thisskl=skills.find(pid);
+			skill.setId(thisskl.getId());
 			skills.update(skill);
-			return "redirect:/resume/"+resume.getId()+"/edit/3";
+			return "redirect:/resume/"+id+"/edit/3";
 	}
-	@PutMapping("/resume/{id}/update_honor")
-	public String updatinghonor(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("honor") Honors honor, BindingResult result) {
+	@PutMapping("/resume/{id}/{pid}/update_honor")
+	public String updatinghonor(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("honor") Honors honor, BindingResult result) {
 			if(result.hasErrors()) {
-				return "resumeinfoform.jsp";
+				return "honor_edit.jsp";
 			}
+			Honors thishrs=honors.find(pid);
+			honor.setId(thishrs.getId());
 			honors.update(honor);
-			return "redirect:/resume/"+resume.getId()+"/edit/6";
+			return "redirect:/resume/"+id+"/edit/6";
 	}
-	@PutMapping("/resume/{id}/update_headerinfo")
-	public String updatingheaderinfo(@Valid @ModelAttribute("resume") Resume resume,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,BindingResult result) {
+	@PutMapping("/resume/{id}/{pid}/update_headerinfo")
+	public String updatingheaderinfo(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,BindingResult result) {
 			if(result.hasErrors()) {
-				return "resumeinfoform.jsp";
+				return "headerinfo_edit.jsp";
 			}
+			Headerinfo thishdr=headerinfos.find(pid);
+			headerinfo.setId(thishdr.getId());
 			headerinfos.update(headerinfo);
-			return "redirect:/resume/"+resume.getId()+"/edit/1";
+			return "redirect:/resume/"+id+"/edit/1";
 	}
 	
 	@DeleteMapping("/delete/{id}")

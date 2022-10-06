@@ -40,7 +40,7 @@
 					<c:forEach items="${allhonors}" var="honor">
 						<p>${honor.name}</p>
 					
-					<form:form action="/resume/${resume.id}/update_honor" method="post" modelAttribute="honor"
+					<form:form action="/resume/${resume.id}/${honor.id}/update_honor" method="post" modelAttribute="honor"
 						class="error ">
 						<input type="hidden" name="_method" value="put"/>
 						<form:errors path="name" class="text-danger" />

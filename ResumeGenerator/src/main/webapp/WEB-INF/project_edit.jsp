@@ -20,6 +20,7 @@
 <!-- change to match your file/naming structure -->
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
 </head>
 <body class="LRpage_setup">
 	<ul class="topnav">
@@ -40,7 +41,7 @@
 					<c:forEach items="${allprojects}" var="project">
 						<p>${project.name}${project.startyear} ${project.endyear}</p>
 					
-					<form:form action="/resume/${resume.id}/update_project" method="post" modelAttribute="project"
+					<form:form action="/resume/${resume.id}/${project.id}/update_project" method="post" modelAttribute="project"
 						class="error ">
 						<input type="hidden" name="_method" value="put"/>
 						<form:errors path="name" class="text-danger" />
@@ -81,8 +82,8 @@
 						<form:errors path="description" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="description">Description:</form:label>
-							<form:textarea type="textarea" row="20" cols="30"
-								path="description" value="${project.description}"/>
+							<form:input path="description" value="${project.description}"/>
+								 
 						</div>
 						<input type="submit" value="Update Project" class="submit" />
 						<form:input type="hidden" path="resume" value="${project.resume.id}" />

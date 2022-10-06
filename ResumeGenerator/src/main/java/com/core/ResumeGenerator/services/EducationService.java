@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.core.ResumeGenerator.models.Education;
 import com.core.ResumeGenerator.models.Resume;
-import com.core.ResumeGenerator.repositories.Educationrepo;
+import com.core.ResumeGenerator.repositories.EducationRepository;
 
 @Service
 public class EducationService {
-	private final Educationrepo repo;
-	public EducationService(Educationrepo repo) {
+	private final EducationRepository repo;
+	public EducationService(EducationRepository repo) {
 		this.repo =repo;
 	}
 	

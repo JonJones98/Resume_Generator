@@ -21,6 +21,12 @@
 <!-- change to match your file/naming structure -->
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script>
+function myFunction() {
+	window.open("/export/${resume.id}", 'Download');
+	
+}
+</script>
 </head>
 
 <body class="LRpage_setup">
@@ -128,7 +134,7 @@
 	<div>
 	<div>
 	</div>
-	<a href="/export/${resume.id}"><button>Download Resume</button></a>
+	<a ><button onclick="myFunction()">Download Resume</button></a>
 	</div>
 	</div>
 	
