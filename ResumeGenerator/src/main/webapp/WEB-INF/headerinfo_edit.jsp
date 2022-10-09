@@ -39,7 +39,7 @@
 							<p>Personal Info</p>
 						</div>
 						<c:forEach items="${allheaderinfos}" var="headerinfo">
-						<form:form action="/resume/${resume.id}/update_headerinfo" method="post" modelAttribute="headerinfo"
+						<form:form action="/resume/${resume.id}/${headerinfo.id}/update_headerinfo" method="post" modelAttribute="headerinfo"
 							class="error ">
 							<input type="hidden" name="_method" value="put"/>
 							<div class="Form_position">

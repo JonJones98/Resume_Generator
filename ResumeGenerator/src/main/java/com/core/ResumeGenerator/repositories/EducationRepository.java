@@ -9,7 +9,7 @@ import com.core.ResumeGenerator.models.Resume;
 import com.core.ResumeGenerator.models.Education;
 
 @Repository
-public interface Educationrepo extends CrudRepository<Education, Long>{
+public interface EducationRepository extends CrudRepository<Education, Long>{
 	
 	List<Education>findAll();
 	List<Education> findByResume(Resume resume);

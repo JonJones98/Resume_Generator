@@ -40,8 +40,9 @@
 					<c:forEach items="${allexperiances}" var="experiance">
 						<p>${experiance.rolename}</p>
 					
-					<form:form action="/resume/${resume.id}/update_experiance" method="post"
+					<form:form action="/resume/${resume.id}/${experiance.id}/update_experiance" method="post"
 						modelAttribute="experiance" class="error ">
+						<input type="hidden" name="_method" value="put" />
 						<form:errors path="name" class="text-danger" />
 						<div class="Form_position">
 							<form:label path="name">Company Name:</form:label>
@@ -96,13 +97,13 @@
 						<div class="Form_position">
 							<form:errors path="decription" class="text-danger" />
 							<form:label path="decription">Description:</form:label>
-							<form:textarea type="textarea" row="20" cols="30"
-								path="decription" value="${experiance.decription}"/>
+							<form:input type="text" path="decription" value="${experiance.decription}"/>
 						</div>
 						<form:input type="hidden" path="resume" value="${experiance.resume.id}" />
 
 						<input type="submit" value="Update Experiance" class="submit" />
 					</form:form>
+					
 					</c:forEach>
 					<a href="/preview/${resume.id}"><button>Back to Resume</button></a>
 				</div>

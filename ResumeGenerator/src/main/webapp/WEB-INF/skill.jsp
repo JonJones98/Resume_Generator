@@ -38,9 +38,15 @@
 			<h3>3 of 6</h3>
 		</div>
 		<c:forEach items="${allskills}" var="skill">
-			<p>${skill.name}</p>
+			 <form id="delete_form" action="/delete/${skill.id}/3/${resume.id}" method="post">
+							<div class="remove-btn">
+							<p>${skill.name}</p>
+							<input type="hidden" name="_method" value="delete"> 
+							<a class="delete_img" onclick="document.getElementById('delete_form').submit(); return false;"><img alt="Remove" src="/img/delete_icon.png" width="20" height="20" /></a>
+						</div>
+						</form>
 		</c:forEach>
-		<form:form action="/skl/new" method="post" modelAttribute="skill">
+		<form:form action="/skl/new/${resume.id}" method="post" modelAttribute="skill">
 			<form:errors path="name" class="text-danger" />
 			<div class="Form_position">
 				<form:label path="name">Skills:</form:label>
@@ -49,7 +55,7 @@
 			<input type="submit" value="Save Skill" class="submit" />
 			<form:input type="hidden" path="resume" value="${resume.id}" />
 		</form:form>
-		<a href="/add/experience"><button>Next</button></a>
+		<a href="/add/experience/${resume.id}"><button>Next</button></a>
 	</div>
 	</div>
 	</div>

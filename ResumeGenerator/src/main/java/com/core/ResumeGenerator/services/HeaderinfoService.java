@@ -42,8 +42,8 @@ public class HeaderinfoService {
 	public Headerinfo update(Headerinfo headerinfo) {
 		return repo.save(headerinfo);
 	}
-	public void delete(Long id) {
-		repo.deleteById(id);
+	public void delete(Long pid) {
+		repo.deleteById(pid);
 	}
 	
 	

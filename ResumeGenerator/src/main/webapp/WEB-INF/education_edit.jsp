@@ -38,7 +38,7 @@
 						<h3>Education</h3>
 					</div>
 					<c:forEach items="${alleducations}" var="education">
-					<form:form action="/resume/${resume.id}/update_education" method="post"
+					<form:form action="/resume/${resume.id}/${education.id}/update_education" method="put"
 						modelAttribute="education">
 						<input type="hidden" name="_method" value="put" />
 						<div>

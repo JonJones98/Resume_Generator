@@ -40,7 +40,7 @@
 						<h3>1 of 6</h3>
 						</div>
 						
-						<form:form action="/hdr/new" method="post" modelAttribute="headerinfo"
+						<form:form action="/hdr/new/${resume.id}" method="post" modelAttribute="headerinfo"
 							class="error ">
 							<div class="Form_position">
 								<form:label path="firstname">First Name:</form:label>

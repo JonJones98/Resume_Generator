@@ -35,12 +35,12 @@
 			<div class="Form_setup">
 				<div class="SubForm_setup">
 					<div>
-						<p>Activities & Honors</p>
+						<p>Activities and Honors</p>
 					</div>
 					<c:forEach items="${allhonors}" var="honor">
 						<p>${honor.name}</p>
 					
-					<form:form action="/resume/${resume.id}/update_honor" method="post" modelAttribute="honor"
+					<form:form action="/resume/${resume.id}/${honor.id}/update_honor" method="post" modelAttribute="honor"
 						class="error ">
 						<input type="hidden" name="_method" value="put"/>
 						<form:errors path="name" class="text-danger" />

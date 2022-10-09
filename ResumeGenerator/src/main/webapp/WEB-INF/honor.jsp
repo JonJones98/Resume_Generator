@@ -35,11 +35,19 @@
 			<div class="Form_setup">
 	<div class="SubForm_setup">
 						<div class="Subtitle_setup">
-						<h3>Activities & Honors</h3>
+						<h3>Activities and Honors</h3>
 						<h3>6 of 6</h3>
 						</div>
-						<c:forEach items="${allhonors}" var="honor"><p>${honor.name}  ${honor.yearawarded}</p></c:forEach>
-						<form:form action="/hrs/new" method="post" modelAttribute="honor"
+						<c:forEach items="${allhonors}" var="honor">
+						<form id="delete_form" action="/delete/${honor.id}/6/${resume.id}" method="post">
+							<div class="remove-btn">
+							<p>${honor.name}  ${honor.yearawarded}</p>
+							<input type="hidden" name="_method" value="delete"> 
+							<a class="delete_img" onclick="document.getElementById('delete_form').submit(); return false;"><img alt="Remove" src="/img/delete_icon.png" width="20" height="20" /></a>
+						</div>
+						</form>
+						</c:forEach>
+						<form:form action="/hrs/new/${resume.id}" method="post" modelAttribute="honor"
 							class="error ">
 							<form:errors path="name" class="text-danger" />
 							<div class="Form_position">

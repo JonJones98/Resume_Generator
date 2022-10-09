@@ -38,8 +38,16 @@
 						<h3>Experience</h3>
 						<h3>4 of 6</h3>
 						</div>
-						<c:forEach items="${allexperiances}" var="experiance"><p>${experiance.name}  ${experiance.rolename} </p></c:forEach>
-						<form:form action="/exp/new" method="post" modelAttribute="experiance"
+						<c:forEach items="${allexperiances}" var="experiance">
+						<form id="delete_form" action="/delete/${experiance.id}/4/${resume.id}" method="post">
+							<div class="remove-btn">
+							<p>${experiance.name}  ${experiance.rolename} </p>
+							<input type="hidden" name="_method" value="delete"> 
+							<a class="delete_img" onclick="document.getElementById('delete_form').submit(); return false;"><img alt="Remove" src="/img/delete_icon.png" width="20" height="20" /></a>
+						</div>
+						</form>
+						</c:forEach>
+						<form:form action="/exp/new/${resume.id}" method="post" modelAttribute="experiance"
 							class="error ">
 							<form:errors path="name" class="text-danger" />
 							<div class="Form_position">
@@ -95,7 +103,7 @@
 							
 							<input type="submit" value="Save Experiance" class="submit" />
 						</form:form>
-						<a href="/add/projects"><button>Next</button></a>
+						<a href="/add/projects/${resume.id}"><button>Next</button></a>
 					</div>
 				</div>
 				</div>

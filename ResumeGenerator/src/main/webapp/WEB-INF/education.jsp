@@ -39,10 +39,16 @@
 						<h3>2 of 6</h3>
 					</div>
 					<c:forEach items="${alleducations}" var="education">
-						<p>${education.name}${education.degreetype}${education.major}
-							${education.enrolledyear} ${education.graduationyear}</p>
+					<div class="remove-btn">
+							<form id="delete_form"class="remove-btn" action="/delete/${education.id}/2/${resume.id}" method="post">
+							<p>${education.name}${education.degreetype}${education.major}
+							${education.enrolledyear} ${education.graduationyear} </p>
+							<input type="hidden" name="_method" value="delete"> 
+							<a class="delete_img" onclick="document.getElementById('delete_form').submit(); return false;"><img alt="Remove" src="/img/delete_icon.png" width="20" height="20" /></a>
+						</form>
+						</div>
 					</c:forEach>
-					<form:form action="/edu/new" method="post"
+					<form:form action="/edu/new/${resume.id}" method="post"
 						modelAttribute="education">
 						<form:errors path="name" class="text-danger" />
 						<div class="Form_position">
@@ -103,7 +109,7 @@
 						<form:input type="hidden" path="resume" value="${resume.id}" />
 						<input type="submit" value="Save Education" class="submit" />
 					</form:form>
-					<a href="/add/skill"><button>Next</button></a>
+					<a href="/add/skill/${resume.id}"><button>Next</button></a>
 				</div>
 			</div>
 		</div>

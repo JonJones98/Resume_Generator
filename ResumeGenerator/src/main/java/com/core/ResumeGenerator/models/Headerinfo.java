@@ -2,10 +2,8 @@ package com.core.ResumeGenerator.models;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +29,7 @@ public class Headerinfo {
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToOne
     @JoinColumn(name="resume_id")
     private Resume resume;
 	public Headerinfo() {

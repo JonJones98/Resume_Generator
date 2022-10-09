@@ -16,7 +16,7 @@ public class SkillsService {
 		this.repo =repo;
 	}
 	
-	//All Skillss
+	//All Skills
 	public List<Skills> all(){
 		return repo.findAll();
 	}

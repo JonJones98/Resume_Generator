@@ -13,6 +13,4 @@ public interface HonorsRepo extends CrudRepository<Honors, Long>{
 	
 	List<Honors>findAll();
 	List<Honors> findByResume(Resume resume);
-	
-
 }
