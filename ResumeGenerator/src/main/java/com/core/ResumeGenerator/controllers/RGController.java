@@ -473,7 +473,11 @@ public class RGController {
 		return "redirect:/add/skill/"+ id;
 	}
 	@PutMapping("/resume/{id}/{pid}/update_education")
+<<<<<<< HEAD
 	public String updatingeducation(Model model,@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("education") Education education, BindingResult result) {
+=======
+	public String updatingeducation(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("education") Education education, BindingResult result) {
+>>>>>>> 1b6e5dab8e4fb71bfbf2d161e2db0a0d4cdc9a23
 			if(result.hasErrors()) {
 				List<String> years = new ArrayList<String>();
 				int endYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -494,6 +498,7 @@ public class RGController {
 			return "redirect:/resume/"+id+"/edit/2";
 	}
 	@PutMapping("/resume/{id}/{pid}/update_experiance")
+<<<<<<< HEAD
 	public String updatingexperiance(Model model,@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("experiance") Experiance experiance, BindingResult result) {
 			if(result.hasErrors()) {
 				List<String> years = new ArrayList<String>();
@@ -508,6 +513,10 @@ public class RGController {
 				model.addAttribute("currentyear", currentyear);
 				model.addAttribute("allexperiances", experiances.byResume(resume));
 				model.addAttribute("resume", resume);
+=======
+	public String updatingexperiance(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("experiance") Experiance experiance, BindingResult result) {
+			if(result.hasErrors()) {
+>>>>>>> 1b6e5dab8e4fb71bfbf2d161e2db0a0d4cdc9a23
 				return "experiance_edit.jsp";
 			}
 			Experiance thisexp=experiances.find(pid);
@@ -538,6 +547,7 @@ public class RGController {
 			return "redirect:/resume/"+id+"/edit/5";
 	}
 	@PutMapping("/resume/{id}/{pid}/update_skill")
+<<<<<<< HEAD
 	public String updatingskill(Model model,@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("skill") Skills skill,BindingResult result) {
 			if(result.hasErrors()) {
 				List<String> years = new ArrayList<String>();
@@ -552,6 +562,10 @@ public class RGController {
 				model.addAttribute("currentyear", currentyear);
 				model.addAttribute("allskills", skills.byResume(resume));
 				model.addAttribute("resume", resume);
+=======
+	public String updatingskill(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("skill") Skills skill,BindingResult result) {
+			if(result.hasErrors()) {
+>>>>>>> 1b6e5dab8e4fb71bfbf2d161e2db0a0d4cdc9a23
 				return "skill_edit.jsp";
 			}
 			Skills thisskl=skills.find(pid);
@@ -560,6 +574,7 @@ public class RGController {
 			return "redirect:/resume/"+id+"/edit/3";
 	}
 	@PutMapping("/resume/{id}/{pid}/update_honor")
+<<<<<<< HEAD
 	public String updatinghonor(Model model,@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("honor") Honors honor, BindingResult result) {
 			if(result.hasErrors()) {
 				List<String> years = new ArrayList<String>();
@@ -574,6 +589,10 @@ public class RGController {
 				model.addAttribute("currentyear", currentyear);
 				model.addAttribute("allhonors", honors.byResume(resume));
 				model.addAttribute("resume", resume);
+=======
+	public String updatinghonor(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("honor") Honors honor, BindingResult result) {
+			if(result.hasErrors()) {
+>>>>>>> 1b6e5dab8e4fb71bfbf2d161e2db0a0d4cdc9a23
 				return "honor_edit.jsp";
 			}
 			Honors thishrs=honors.find(pid);
@@ -582,6 +601,7 @@ public class RGController {
 			return "redirect:/resume/"+id+"/edit/6";
 	}
 	@PutMapping("/resume/{id}/{pid}/update_headerinfo")
+<<<<<<< HEAD
 	public String updatingheaderinfo(Model model,@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,BindingResult result) {
 			if(result.hasErrors()) {
 				List<String> years = new ArrayList<String>();
@@ -596,6 +616,10 @@ public class RGController {
 				model.addAttribute("currentyear", currentyear);
 				model.addAttribute("headerinfos", headerinfos.byResume(resume));
 				model.addAttribute("resume", resume);
+=======
+	public String updatingheaderinfo(@PathVariable("pid") Long pid,@PathVariable("id") Long id,@Valid @ModelAttribute("headerinfo") Headerinfo headerinfo,BindingResult result) {
+			if(result.hasErrors()) {
+>>>>>>> 1b6e5dab8e4fb71bfbf2d161e2db0a0d4cdc9a23
 				return "headerinfo_edit.jsp";
 			}
 			Headerinfo thishdr=headerinfos.find(pid);

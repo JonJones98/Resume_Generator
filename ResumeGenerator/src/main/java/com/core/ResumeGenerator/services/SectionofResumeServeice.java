@@ -10,6 +10,10 @@ import com.core.ResumeGenerator.models.Honors;
 import com.core.ResumeGenerator.models.Projects;
 import com.core.ResumeGenerator.models.Resume;
 import com.core.ResumeGenerator.models.Skills;
+<<<<<<< HEAD
+=======
+import com.core.ResumeGenerator.models.User;
+>>>>>>> 1b6e5dab8e4fb71bfbf2d161e2db0a0d4cdc9a23
 import com.core.ResumeGenerator.repositories.EducationRepository;
 import com.core.ResumeGenerator.repositories.ExperianceRepo;
 import com.core.ResumeGenerator.repositories.HeaderinfoRepo;
